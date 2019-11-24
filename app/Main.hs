@@ -17,3 +17,15 @@ data Person = Person
 instance ToJSON Person
 
 instance FromJSON Person
+
+type Api = SpockM () () () ()
+
+type ApiAction a = SpockAction () () () a
+
+main :: IO ()
+main = do
+  spockCfg <- defaultSpockCfg () PCNoDatabase ()
+  runSpock 8080 (spock spockCfg app)
+
+app :: Api
+app = get "people" $ json [Person {name = "Fry", age = 25}, Person {name = "Zuzia", age = 25}]
