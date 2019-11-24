@@ -1,6 +1,19 @@
-module Main where
+{-# LANGUAGE DeriveGeneric     #-}
+{-# LANGUAGE OverloadedStrings #-}
 
-import Lib
+import           Web.Spock
+import           Web.Spock.Config
 
-main :: IO ()
-main = someFunc
+import           Data.Aeson       hiding (json)
+import           Data.Monoid      ((<>))
+import           Data.Text        (Text, pack)
+import           GHC.Generics
+
+data Person = Person
+  { name :: Text
+  , age  :: Int
+  } deriving (Generic, Show)
+
+instance ToJSON Person
+
+instance FromJSON Person

@@ -1,8 +1,8 @@
 name:                spock-rest
 version:             0.1.0.0
-github:              "githubuser/spock-rest"
+github:              "zuzia-kru/spock-rest"
 license:             BSD3
-author:              "Author name here"
+author:              "zuzia-kru"
 maintainer:          "example@example.com"
 copyright:           "2019 Author name here"
 
@@ -21,6 +21,7 @@ description:         Please see the README on GitHub at <https://github.com/gith
 
 dependencies:
 - base >= 4.7 && < 5
+- text
 
 library:
   source-dirs: src
@@ -35,6 +36,10 @@ executables:
     - -with-rtsopts=-N
     dependencies:
     - spock-rest
+    - base
+    - aeson
+    - Spock
+    - text
 
 tests:
   spock-rest-test:
