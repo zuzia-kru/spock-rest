@@ -49,7 +49,9 @@ main = do
 
 app :: Api
 app = do
-  get "people" $ json [Person {personName = "Fry", personAge = 25}, Person {personName = "Zuziafdsfs", personAge = 25}]
+  get "people" $ do
+    allPeople <- runSQL $ selectList [] [Asc PersonId]
+    json allPeople
   post "people" $ do
     maybePerson <- jsonBody :: ApiAction (Maybe Person)
     case maybePerson of
