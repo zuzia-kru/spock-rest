@@ -28,4 +28,8 @@ main = do
   runSpock 8080 (spock spockCfg app)
 
 app :: Api
-app = get "people" $ json [Person {name = "Fry", age = 25}, Person {name = "Zuzia", age = 25}]
+app = do 
+        get "people" $ json [Person {name = "Fry", age = 25}, Person {name = "Zuzia", age = 25}]
+        post "people" $ do 
+          thePerson <- jsonBody' :: ApiAction Person
+          text $ "Parsed: " <> pack (show thePerson)
